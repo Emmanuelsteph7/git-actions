@@ -4,6 +4,6 @@ describe("Sum function", () => {
   it("should return the sum", () => {
     const value = sum(4, 5);
 
-    expect(value).toBe(4);
+    expect(value).toBe(9);
   });
 });
