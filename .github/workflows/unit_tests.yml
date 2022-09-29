@@ -3,6 +3,9 @@ name: Unit tests
 
 # execute on events
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main

@@ -1,0 +1,57 @@
+# Workflow name
+name: Unit tests 2
+
+# execute on events
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+# Jobs to run
+jobs:
+  # this is a job
+  # job to make sure we have a successful build
+  build:
+    name: build
+
+    # specifies the server that this job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # this helps us set the node versions that we want our job to run on
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2 # this helps us checkout to the branch that we are making the PR from
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v2 # this sets up node in this job
+        with:
+        node-version: ${{matrix.node-version}}
+        cache: "npm"
+      - run: npm i
+      - run: npm run build
+  # job to make sure we have a successful build
+  tests:
+    name: test
+
+    # specifies the server that this job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # this helps us set the node versions that we want our job to run on
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2 # this helps us checkout to the branch that we are making the PR from
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v2 # this sets up node in this job
+        with:
+        node-version: ${{matrix.node-version}}
+        cache: "npm"
+      - run: npm i
+      - run: npm run test
