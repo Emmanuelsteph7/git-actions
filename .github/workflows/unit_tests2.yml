@@ -30,8 +30,8 @@ jobs:
       - name: Use Node.js ${{matrix.node-version}}
         uses: actions/setup-node@v2 # this sets up node in this job
         with:
-        node-version: ${{matrix.node-version}}
-        cache: "npm"
+          node-version: ${{matrix.node-version}}
+          cache: "npm"
       - run: npm i
       - run: npm run build
   # job to make sure we have a successful build
@@ -51,7 +51,7 @@ jobs:
       - name: Use Node.js ${{matrix.node-version}}
         uses: actions/setup-node@v2 # this sets up node in this job
         with:
-        node-version: ${{matrix.node-version}}
-        cache: "npm"
+          node-version: ${{matrix.node-version}}
+          cache: "npm"
       - run: npm i
       - run: npm run test
